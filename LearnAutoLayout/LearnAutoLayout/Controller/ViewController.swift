@@ -7,13 +7,20 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class ViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
     }
 
+
+}
+
+extension ViewController {
+    override func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
 
 }
 
