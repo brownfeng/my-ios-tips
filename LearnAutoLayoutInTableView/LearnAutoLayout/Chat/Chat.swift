@@ -40,7 +40,7 @@ struct Chat {
     
     
     static func mockData() -> [Self] {
-        var data1 = (0...2).enumerated().map { _, _ in
+        let data1 = (0...2).enumerated().map { _, _ in
             return Chat(title: "brownfeng", date: "2022.4.23", memberSince: "还是 另一次不怀好.", description: """
                                 当闭包作为一个实际参数传递给一个函数的时候，并且它会在函数返回之后调用我们就说这个闭包逃逸了，当你声明一个接受闭包作为形式参数的函数时，你可以在形式参数前写@escaping来明确闭包是允许逃逸的。
                                 
@@ -65,7 +65,16 @@ struct Chat {
         let data4 = (0...2).enumerated().map { _, _ in
             return Chat(title: "brownfeng", date: "2022.4.23", memberSince: "还闭包作为确闭包是允许.", description: "调用我")
         }
-        return data1 + data2 + data3 + data4
+        var initStr: String = "还闭包作为确闭包是允许."
+        let data5 = (0...100).enumerated().map { _, _ -> Chat in
+
+            initStr += "index"
+
+            let chat = Chat(title: "brownfeng", date: "2022.4.23", memberSince: "调用我!!!!!" , description: initStr)
+            return chat
+        }
+
+        return data1 + data2 + data3 + data4 + data5
     }
     
 }

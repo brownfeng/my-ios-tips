@@ -8,6 +8,7 @@
 import UIKit
 
 class ChatViewController: UITableViewController {
+    var cache: [Int: CGFloat] = [:]
     var dataArray: [Chat] = [] {
         didSet {
             configure()
@@ -56,16 +57,28 @@ extension ChatViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: ChatViewCell.identifier, for: indexPath) as! ChatViewCell
         cell.viewModel = ChatViewModel(with: dataArray[indexPath.row])
         
-        cell.onSeeMoreDidTap = { vm in
+        cell.onSeeMoreDidTap = {[weak self] vm in
+            self?.cache.removeValue(forKey: indexPath.row)
+
             tableView.beginUpdates()
             vm.isExpanded.toggle()
             tableView.endUpdates()
         }
+        
+        let size = cell.systemLayoutSizeFitting(CGSize(width: self.view.bounds.size.width, height: 0), withHorizontalFittingPriority: UILayoutPriority.fittingSizeLevel, verticalFittingPriority: UILayoutPriority.fittingSizeLevel)
+        print("caclulate indexpath height: \(indexPath) size: \(size)")
+        self.cache[indexPath.row] = size.height
         return cell
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return UITableView.automaticDimension
+        if let height = cache[indexPath.row] {
+            print("cache hit - height: \(height)")
+            return height
+        } else {
+            print("nocache hit")
+            return UITableView.automaticDimension
+        }
     }
 }
 

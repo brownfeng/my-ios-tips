@@ -115,7 +115,7 @@ class ReviewViewCell: UITableViewCell {
         mainStackView.addArrangedSubview(userNameLabel)
         userNameLabel.heightAnchor.constraint(equalToConstant: 22).isActive = true
         mainStackView.addArrangedSubview(memberSinceLabel)
-        memberSinceLabel.heightAnchor.constraint(equalToConstant: 22).isActive = true
+//        memberSinceLabel.heightAnchor.constraint(equalToConstant: 22).isActive = true
         mainStackView.addArrangedSubview(descLabel)
         
         mainStackView.addArrangedSubview(bottomStackView)

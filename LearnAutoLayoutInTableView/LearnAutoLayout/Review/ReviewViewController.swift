@@ -8,6 +8,7 @@
 import UIKit
 
 class ReviewViewController: UITableViewController {
+    var heightCache: [Int: CGFloat] = [:]
     var dataArray: [Review] = [] {
         didSet {
             configure()
@@ -82,6 +83,23 @@ extension ReviewViewController {
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableView.automaticDimension
+    }
+    
+    override func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+        if let cacheHeight = heightCache[indexPath.row] {
+            return cacheHeight
+        } else {
+            return 80
+        }
+    }
+    
+    override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        if let _ = heightCache[indexPath.row] {
+            
+        } else {
+            print("cell height: \(cell.frame.size)")
+            heightCache[indexPath.row] = cell.frame.size.height
+        }
     }
 }
 
