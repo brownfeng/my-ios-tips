@@ -8,18 +8,32 @@
 
 /* Begin PBXBuildFile section */
 		C0440999281378EF00E92430 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0440998281378EF00E92430 /* AppDelegate.swift */; };
-		C044099D281378EF00E92430 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C044099C281378EF00E92430 /* ViewController.swift */; };
+		C044099D281378EF00E92430 /* ReviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C044099C281378EF00E92430 /* ReviewViewController.swift */; };
 		C04409A2281378F100E92430 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C04409A1281378F100E92430 /* Assets.xcassets */; };
 		C04409A5281378F100E92430 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C04409A3281378F100E92430 /* LaunchScreen.storyboard */; };
+		C05A771A2813A77100619C9A /* ReviewHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C05A77192813A77100619C9A /* ReviewHeaderView.swift */; };
+		C07884A428137A85001022F0 /* ReviewViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C07884A328137A85001022F0 /* ReviewViewCell.swift */; };
+		C07884A828137AA9001022F0 /* Review.swift in Sources */ = {isa = PBXBuildFile; fileRef = C07884A728137AA9001022F0 /* Review.swift */; };
+		C07884AC28138052001022F0 /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C07884AB28138052001022F0 /* Extension.swift */; };
+		C07884AE28139BDC001022F0 /* Chat.swift in Sources */ = {isa = PBXBuildFile; fileRef = C07884AD28139BDC001022F0 /* Chat.swift */; };
+		C07884B028139C08001022F0 /* ChatViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C07884AF28139C08001022F0 /* ChatViewCell.swift */; };
+		C07884B528139F58001022F0 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C07884B428139F58001022F0 /* ChatViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		C0440995281378EF00E92430 /* LearnAutoLayout.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LearnAutoLayout.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C0440998281378EF00E92430 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		C044099C281378EF00E92430 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		C044099C281378EF00E92430 /* ReviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewViewController.swift; sourceTree = "<group>"; };
 		C04409A1281378F100E92430 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C04409A4281378F100E92430 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C04409A6281378F100E92430 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C05A77192813A77100619C9A /* ReviewHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewHeaderView.swift; sourceTree = "<group>"; };
+		C07884A328137A85001022F0 /* ReviewViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewViewCell.swift; sourceTree = "<group>"; };
+		C07884A728137AA9001022F0 /* Review.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Review.swift; sourceTree = "<group>"; };
+		C07884AB28138052001022F0 /* Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
+		C07884AD28139BDC001022F0 /* Chat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Chat.swift; sourceTree = "<group>"; };
+		C07884AF28139C08001022F0 /* ChatViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewCell.swift; sourceTree = "<group>"; };
+		C07884B428139F58001022F0 /* ChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -52,35 +66,13 @@
 		C0440997281378EF00E92430 /* LearnAutoLayout */ = {
 			isa = PBXGroup;
 			children = (
+				C07884B328139F0C001022F0 /* Chat */,
+				C07884B228139EFD001022F0 /* Review */,
 				C07884A0281379F6001022F0 /* Resources */,
-				C078849F281379E9001022F0 /* Controller */,
-				C078849E2813795B001022F0 /* ViewModel */,
-				C078849D28137954001022F0 /* View */,
 				C0440998281378EF00E92430 /* AppDelegate.swift */,
+				C07884AB28138052001022F0 /* Extension.swift */,
 			);
 			path = LearnAutoLayout;
-			sourceTree = "<group>";
-		};
-		C078849D28137954001022F0 /* View */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
-		C078849E2813795B001022F0 /* ViewModel */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = ViewModel;
-			sourceTree = "<group>";
-		};
-		C078849F281379E9001022F0 /* Controller */ = {
-			isa = PBXGroup;
-			children = (
-				C044099C281378EF00E92430 /* ViewController.swift */,
-			);
-			path = Controller;
 			sourceTree = "<group>";
 		};
 		C07884A0281379F6001022F0 /* Resources */ = {
@@ -91,6 +83,27 @@
 				C04409A6281378F100E92430 /* Info.plist */,
 			);
 			name = Resources;
+			sourceTree = "<group>";
+		};
+		C07884B228139EFD001022F0 /* Review */ = {
+			isa = PBXGroup;
+			children = (
+				C07884A328137A85001022F0 /* ReviewViewCell.swift */,
+				C044099C281378EF00E92430 /* ReviewViewController.swift */,
+				C07884A728137AA9001022F0 /* Review.swift */,
+				C05A77192813A77100619C9A /* ReviewHeaderView.swift */,
+			);
+			path = Review;
+			sourceTree = "<group>";
+		};
+		C07884B328139F0C001022F0 /* Chat */ = {
+			isa = PBXGroup;
+			children = (
+				C07884AF28139C08001022F0 /* ChatViewCell.swift */,
+				C07884AD28139BDC001022F0 /* Chat.swift */,
+				C07884B428139F58001022F0 /* ChatViewController.swift */,
+			);
+			path = Chat;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -163,7 +176,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C044099D281378EF00E92430 /* ViewController.swift in Sources */,
+				C07884A828137AA9001022F0 /* Review.swift in Sources */,
+				C07884AE28139BDC001022F0 /* Chat.swift in Sources */,
+				C07884B528139F58001022F0 /* ChatViewController.swift in Sources */,
+				C044099D281378EF00E92430 /* ReviewViewController.swift in Sources */,
+				C07884A428137A85001022F0 /* ReviewViewCell.swift in Sources */,
+				C05A771A2813A77100619C9A /* ReviewHeaderView.swift in Sources */,
+				C07884B028139C08001022F0 /* ChatViewCell.swift in Sources */,
+				C07884AC28138052001022F0 /* Extension.swift in Sources */,
 				C0440999281378EF00E92430 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
