@@ -65,40 +65,43 @@ extension ViewController: UICollectionViewDataSource, UICollectionViewDelegateFl
         cell.titleLabel.text = model.title
         
         // 内存缓存 -- 内存会清理
+        
         if let image = cacheImageMap[model.imageUrl] {
             print("使用内存缓存: \(model.title)")
             cell.imageView.image = image
             return cell
         }
         
-        // 沙盒缓存
+        // 沙盒缓存 -- 读取沙盒缓存
+        
         let cacheImageURL = model.imageUrl.getDownloadURL()
         let diskImage = UIImage(contentsOfFile: cacheImageURL.path)
         if let image = diskImage {
             print("使用磁盘缓存: \(model.title)")
             cell.imageView.image = image
+            
+            // 写入内存缓存
+            self.cacheImageMap[model.imageUrl] = image
             return cell
         }
         
         print("开始后台下载: \(model.title)")
+        
         // 下载 - 事务
         // 开辟子线程 - 下载
         let bo = BlockOperation {
             print("去下载: \(model.title)")
-            // 下载
+            // 1. 先下载
             let imageData = try! Data(contentsOf: imageURL)
-            // 写入diskCache缓存
+            // 2. 写入 disk 缓存
             try! imageData.write(to: cacheImageURL)
             
             let image = UIImage(data: imageData)
-            
+
             // 更新UI
             OperationQueue.main.addOperation {
-                // 缓存内存
+                // 内存缓存 - 因为 cacheImageMap 会在主线程中调用, 因此要放到主线程中缓存
                 self.cacheImageMap[model.imageUrl] = image
-                // 缓存磁盘
-                
-                
                 // 更新UI
                 cell.imageView.image = image
             }

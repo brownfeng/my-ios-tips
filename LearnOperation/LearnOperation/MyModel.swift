@@ -20,7 +20,7 @@ extension String {
      
         let fileManager = FileManager.default
         let cacheURL = fileManager.urls(for: .documentDirectory, in: .userDomainMask).first!
-        let cacheDir = cacheURL.appendingPathComponent("LGDiskPath", isDirectory: true)
+        let cacheDir = cacheURL.appendingPathComponent("ImageDiskPath", isDirectory: true)
         let isExist = fileManager.fileExists(atPath: cacheDir.path)
         if !isExist {
             do {
@@ -31,8 +31,6 @@ extension String {
         }
         
         return cacheDir.appendingPathComponent(md5, isDirectory: false)
-        
-    
     }
 
     /// 原生md5
