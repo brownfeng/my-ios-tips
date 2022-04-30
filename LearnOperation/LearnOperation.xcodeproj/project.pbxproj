@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C02EEE2D281CCF32005292C0 /* MyViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C02EEE2C281CCF32005292C0 /* MyViewModel.swift */; };
+		C02EEE2F281CDB7A005292C0 /* MyModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C02EEE2E281CDB7A005292C0 /* MyModel.swift */; };
 		C0FF609D281CC4C800392771 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0FF609C281CC4C800392771 /* AppDelegate.swift */; };
 		C0FF609F281CC4C800392771 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0FF609E281CC4C800392771 /* SceneDelegate.swift */; };
 		C0FF60A1281CC4C800392771 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0FF60A0281CC4C800392771 /* ViewController.swift */; };
@@ -17,6 +19,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		C02EEE2C281CCF32005292C0 /* MyViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyViewModel.swift; sourceTree = "<group>"; };
+		C02EEE2E281CDB7A005292C0 /* MyModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyModel.swift; sourceTree = "<group>"; };
 		C0FF6099281CC4C800392771 /* LearnOperation.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LearnOperation.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C0FF609C281CC4C800392771 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C0FF609E281CC4C800392771 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -66,6 +70,8 @@
 				C0FF60A7281CC4CA00392771 /* LaunchScreen.storyboard */,
 				C0FF60AA281CC4CA00392771 /* Info.plist */,
 				C0FF60B0281CC85B00392771 /* MyCollectionViewCell.swift */,
+				C02EEE2C281CCF32005292C0 /* MyViewModel.swift */,
+				C02EEE2E281CDB7A005292C0 /* MyModel.swift */,
 			);
 			path = LearnOperation;
 			sourceTree = "<group>";
@@ -142,9 +148,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				C0FF60A1281CC4C800392771 /* ViewController.swift in Sources */,
+				C02EEE2F281CDB7A005292C0 /* MyModel.swift in Sources */,
 				C0FF60B1281CC85B00392771 /* MyCollectionViewCell.swift in Sources */,
 				C0FF609D281CC4C800392771 /* AppDelegate.swift in Sources */,
 				C0FF609F281CC4C800392771 /* SceneDelegate.swift in Sources */,
+				C02EEE2D281CCF32005292C0 /* MyViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

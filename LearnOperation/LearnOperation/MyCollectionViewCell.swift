@@ -9,7 +9,8 @@ import Foundation
 import UIKit
 
 class MyCollectionViewCell: UICollectionViewCell {
-    private let imageView: UIImageView = {
+    static let identifier: String = "MyCollectionViewCell"
+    let imageView: UIImageView = {
         let iv = UIImageView()
         iv.isUserInteractionEnabled = true
         iv.contentMode = .scaleAspectFill
@@ -17,21 +18,12 @@ class MyCollectionViewCell: UICollectionViewCell {
         return iv
     }()
     
-    private let titleLabel: UILabel = {
+    let titleLabel: UILabel = {
         let label = UILabel()
         label.text = "千王之王"
         label.font = UIFont.systemFont(ofSize: 16)
         label.textColor = .gray
         label.textAlignment = .center
-        return label
-    }()
-    
-    private let moneyLabel: UILabel = {
-        let label = UILabel()
-        label.textColor = .orange
-        label.font = .boldSystemFont(ofSize: 20)
-        label.textAlignment = .center
-        label.text = "1000"
         return label
     }()
     
@@ -50,7 +42,6 @@ class MyCollectionViewCell: UICollectionViewCell {
         backgroundColor = .white
         addSubview(imageView)
         addSubview(titleLabel)
-        addSubview(moneyLabel)
     }
     
     override func updateConstraints() {
@@ -61,6 +52,6 @@ class MyCollectionViewCell: UICollectionViewCell {
         super.layoutSubviews()
         // your own code
         self.imageView.frame = CGRect(x: 0, y: 0, width: contentView.bounds.width, height: 200)
-        self.titleLabel.frame = CGRect(x: 0, y: 0, width: <#T##Double#>, height: <#T##Double#>)
+        self.titleLabel.frame = CGRect(x: 0, y: imageView.frame.maxY, width: contentView.bounds.width, height: 30)
     }
 }
