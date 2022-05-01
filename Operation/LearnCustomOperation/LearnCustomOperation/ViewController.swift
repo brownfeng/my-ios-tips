@@ -63,7 +63,7 @@ class ContentImportOperation: Operation {
     }
 }
 
-// tips
+// tips -> 自定义的Operation中, 先判断 main() 函数中, 之前的依赖是否ok了!
 final class UploadContentOperation: Operation {
     override func main() {
         // 先判断当前 Operation 的服务
