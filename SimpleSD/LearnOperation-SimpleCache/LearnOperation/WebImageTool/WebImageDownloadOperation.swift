@@ -15,7 +15,7 @@ class WebImageDownloadOperation: Operation {
     
     private let completionHandler: DownloadCallback
 
-    private let queue = DispatchQueue(label: "async.operation.queue")
+    private let workQueue = DispatchQueue(label: "async.operation.queue")
     private let lock = NSRecursiveLock()
 
     private var _executing = false
@@ -29,6 +29,7 @@ class WebImageDownloadOperation: Operation {
             lock.unlock()
             return wasExecuting
         }
+        
         set {
             if isExecuting != newValue {
                 willChangeValue(forKey: "isExecuting")
@@ -93,7 +94,7 @@ class WebImageDownloadOperation: Operation {
         isExecuting = true
         let url = URL(string: self.urlString)
         guard let url = url else {
-            queue.async {
+            workQueue.async {
                 Thread.sleep(forTimeInterval: 1)
                 self.done()
             }
@@ -111,6 +112,7 @@ class WebImageDownloadOperation: Operation {
             print("下载完成: \(self.title)")
             try? data.write(to: self.urlString.getDownloadURL())
             self.done()
+            // 只有真实成功的回调
             completionHandler(data, self.urlString)
             return
         }else {

@@ -31,6 +31,7 @@ public extension UIImageView {
         self.image = nil
         
         WebImageManager.shared.downloadImage(with: urlString, title: title) {[weak self] image, urlString in
+            // 下载 成功!
             guard let self = self else {
                 return
             }

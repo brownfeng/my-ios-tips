@@ -13,7 +13,6 @@ class WebImageManager {
     
     private init() {
         NotificationCenter.default.addObserver(self, selector: #selector(didReceiveMemoryWarning), name: UIApplication.didReceiveMemoryWarningNotification, object: nil)
-        
     }
     
     deinit {
@@ -38,6 +37,7 @@ class WebImageManager {
         operation?.cancel()
         
         downloadOperationMap.removeValue(forKey: urlString)
+        
         handleMap.removeValue(forKey: urlString)
     }
     
