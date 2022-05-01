@@ -19,12 +19,11 @@ struct MyViewModel {
     }
     
     private func loadData() {
-        let titleArray: [String] = ["典雅的教堂","高清无码美女",
-                                    "典雅的教堂","西湖美女","毛笔执念","毛笔执念", "西湖美女", "高清无码美女","西湖美女","毛笔执念","毛笔执念", "西湖美女", "高清无码美女","西湖美女","毛笔执念","毛笔执念", "西湖美女", "高清无码美女","典雅的教堂","高清无码美女",
-                                    "典雅的教堂","西湖美女","123123", "123123123"]
+        let titleArray: [String] = ["典雅的教堂","蓝色衣服美女",
+                                    "公牛23号","美国帅哥","狗狗","超人", "超人", "大海","微信背景","白衣美女","韩国帅哥", "执念", "古建筑","蓝色衣服美女","公牛23号","美国帅哥", "狗狗", "超人","超人","大海",
+                                    "微信背景","白衣美女","韩国帅哥", "执念"]
         
         let imageUrlArray: [String] = [
-            
                 "http://c.hiphotos.baidu.com/image/h%3D300/sign=f60add2afc1f3a2945c8d3cea924bce3/fd039245d688d43ffdcaed06711ed21b0ff43be6.jpg",
                 "http://e.hiphotos.baidu.com/image/h%3D300/sign=0708e32319ce36d3bd0485300af23a24/fcfaaf51f3deb48fd0e9be27fc1f3a292cf57842.jpg",
                 "https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=2255216145,2300317876&fm=27&gp=0.jpg",

@@ -20,7 +20,6 @@ class WebImageDownloadOperation: Operation {
 
     private var _executing = false
     private var _finished = false
-    private var _cancelled = false
 
     override var isExecuting: Bool {
         get {
@@ -60,23 +59,9 @@ class WebImageDownloadOperation: Operation {
         }
     }
     
-    override var isCancelled: Bool {
-        get {
-            lock.lock()
-            let wasCancelled = _cancelled
-            lock.unlock()
-            return wasCancelled
-        }
-    }
-    
     override func cancel() {
-        if isFinished {
-            return
-        }
-        lock.lock()
+        print("取消服务")
         super.cancel()
-        _cancelled = true
-        lock.unlock()
     }
 
     override var isAsynchronous: Bool {
@@ -84,20 +69,17 @@ class WebImageDownloadOperation: Operation {
     }
 
     override func start() {
-        Thread.sleep(forTimeInterval: 5)
-        
         if isCancelled {
             print("取消下载 \(self.title)")
             isFinished = true
             return
         }
         isExecuting = true
+        Thread.sleep(forTimeInterval: 2)
+
         let url = URL(string: self.urlString)
         guard let url = url else {
-            workQueue.async {
-                Thread.sleep(forTimeInterval: 1)
-                self.done()
-            }
+            self.done()
             return
         }
         
@@ -108,6 +90,7 @@ class WebImageDownloadOperation: Operation {
             isFinished = true
             return
         }
+        
         if let data = data {
             print("下载完成: \(self.title)")
             try? data.write(to: self.urlString.getDownloadURL())
