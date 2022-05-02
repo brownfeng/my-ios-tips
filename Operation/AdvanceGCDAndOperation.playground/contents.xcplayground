@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<playground version='6.0' target-platform='ios' display-mode='raw' buildActiveScheme='true' importAppTypes='true'>
+    <pages>
+        <page name='Thread And GCDQueue'/>
+        <page name='GCD Queue'/>
+        <page name='GCD Dispatch Group'/>
+        <page name='GCD Lock Queue'/>
+        <page name='DispatchWorkItem'/>
+        <page name='Operation Dependency'/>
+        <page name='Dependency Cancel'/>
+        <page name='State of Operation'/>
+        <page name='CustomOperation'/>
+        <page name='State Oriented Operation'/>
+        <page name='Simple AsyncOperation'/>
+        <page name='AsyncResultOperation'/>
+        <page name='Simple Chained Operation'/>
+    </pages>
+</playground>
