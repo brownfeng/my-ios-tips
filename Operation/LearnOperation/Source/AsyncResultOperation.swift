@@ -9,20 +9,22 @@ import Foundation
 
 open class AsyncResultOperation<Success, Failure>: AsyncOperation where Failure: Error {
    
-    public private(set) var result: Result<Success, Failure>? {
+    /// 注意这里定义使用的是 ! 强制解包, 但是 extension 中调用时候使用的是:
+    ///     var output: Any? { try? result?.get() }
+    /// 这样能解决 output 内容的问题
+    public private(set) var result: Result<Success, Failure>! {
         didSet {
-            guard let result = result else {
-                return
-            }
-
             onResult?(result)
         }
     }
     
     public var onResult:((_ result: Result<Success, Failure>) -> Void)?
     
-    public override func finish() {
-        fatalError("yout should use finish(with:) to ensure a result")
+    final override public func finish() {
+        guard !isCancelled else {
+            return super.finish()
+        }
+        fatalError("Make use of finish(with:) instead to ensure a result")
     }
     
     public func finish(with result: Result<Success, Failure>) {

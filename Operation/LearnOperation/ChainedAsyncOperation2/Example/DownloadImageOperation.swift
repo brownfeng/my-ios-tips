@@ -26,6 +26,7 @@ class DownloadImageOperation: ChainedAsyncResultOperation<ImageURL, UIImage, Dow
         super.init(input: imageURL)
     }
     
+    // 正在执行中被cancel!!!
     override func main() {
         if isCancelled {
             self.finish(with: .failure(.canceled))

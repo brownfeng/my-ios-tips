@@ -23,12 +23,19 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         test()
+        
+        
+        let result: Result<String, Error>! = nil
+        let value = try? result?.get()
+        print(value)
     }
 
     func test() {
         let queue = OperationQueue()
         let url = URL(string: "https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=2255216145,2300317876&fm=27&gp=0.jpg")!
         let downloadOperation = DownloadImageOperation(imageURL: url)
+        
+        // 正在执行中 cancel 了
         downloadOperation.onResult = { result in
             switch result {
             case .success(let image):
@@ -39,6 +46,7 @@ class ViewController: UIViewController {
                 print(error)
             }
         }
+        downloadOperation.cancel()
         
         let imageGrayOperation = ImageGrayOperation()
         imageGrayOperation.onResult = { result in
