@@ -14,5 +14,6 @@
         <page name='Simple AsyncOperation'/>
         <page name='AsyncResultOperation'/>
         <page name='Simple Chained Operation'/>
+        <page name='Advance Chianed Operation'/>
     </pages>
 </playground>
