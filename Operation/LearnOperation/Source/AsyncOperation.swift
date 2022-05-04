@@ -8,7 +8,7 @@
 import Foundation
 
 open class AsyncOperation: Operation {
-    private let lockQueue = DispatchQueue(label: "com.brownfeng.asyncoperation", attributes: .concurrent)
+    private let lockQueue = DispatchQueue(label: "com.brownfeng.asyncOperation", attributes: .concurrent)
 
     override open var isAsynchronous: Bool {
         return true

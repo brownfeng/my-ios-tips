@@ -25,9 +25,9 @@ class ViewController: UIViewController {
         test()
         
         
-        let result: Result<String, Error>! = nil
-        let value = try? result?.get()
-        print(value)
+//        let result: Result<String, Error>! = nil
+//        let value = try? result?.get()
+//        print(value)
     }
 
     func test() {
@@ -46,7 +46,7 @@ class ViewController: UIViewController {
                 print(error)
             }
         }
-        downloadOperation.cancel()
+//        downloadOperation.cancel()
         
         let imageGrayOperation = ImageGrayOperation()
         imageGrayOperation.onResult = { result in

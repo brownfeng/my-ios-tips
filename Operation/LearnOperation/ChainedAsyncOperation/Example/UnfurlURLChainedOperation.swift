@@ -24,6 +24,7 @@ final class UnfurlURLChainedOperation: ChainedAsyncResultOperation<ShortURL, Lon
         super.init(input: shortURL)
     }
     
+    // 重新实现 main
     override func main() {
         guard let input = input else {
             return finish(with: .failure(.missingInputURL))
