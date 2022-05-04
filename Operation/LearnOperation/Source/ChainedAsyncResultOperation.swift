@@ -9,10 +9,12 @@ import Foundation
 
 protocol ChainedOperationOutputProviding {
     var output: Any? { get }
+    var error: Error? { get }
 }
 
 extension AsyncResultOperation: ChainedOperationOutputProviding {
     var output: Any? { try? result?.get() }
+    var error: Error? { result?.error }
 }
 
 class ChainedAsyncResultOperation<Input, Output, Failure>: AsyncResultOperation<Output, Failure> where Failure: Error {

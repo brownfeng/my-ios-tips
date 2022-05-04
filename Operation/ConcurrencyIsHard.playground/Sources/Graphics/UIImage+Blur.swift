@@ -1,95 +1,29 @@
-//
-//  TiltShiftOperation.swift
-//  OperationPractice
-//
-//  Created by brown on 2022/5/4.
-//
+/*
+ * Copyright (c) 2016 Razeware LLC
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */
 
-import Foundation
-import UIKit
 import Accelerate
+import UIKit
 
-//: The same filtering operation you saw before. The `main()` method now attempts to find an input image in its dependencies if the `inputImage` property hasn't already been set.
-class TiltShiftOperation: ChainedAsyncResultOperation<UIImage, UIImage, TiltShiftOperation.Error > {
-    
-    enum Error: Swift.Error {
-        case canceled
-        case invalidInput
-        case tiltShiftError
-    }
-    
-    override func main() {
-        guard !isCancelled else {
-            finish(with: .failure(.canceled))
-            return
-        }
-        
-        guard let input = input else {
-            finish(with: .failure(.invalidInput))
-            return
-        }
-        
-        guard let outputImage = tiltShift(image: input) else {
-            self.finish(with: .failure(Error.tiltShiftError))
-            return
-        }
-        
-        self.finish(with: .success(outputImage))
-    }
-    
-    override func cancel() {
-        cancel(with: .canceled)
-    }
-
-    private func tiltShift(image: UIImage?) -> UIImage? {
-        guard let image = image else { return nil }
-        sleep(1)
-
-        // 获取 mask
-        let mask = topAndBottomGradient(size: image.size)
-
-        // 增加高斯模糊
-        return image.applyBlur(radius: 6, maskImage: mask)
-    }
-
-    // 异步任务
-    private func tiltShiftAsync(image: UIImage?, callback: @escaping (UIImage?) -> ()) {
-        OperationQueue().addOperation {
-            let result = self.tiltShift(image: image)
-            callback(result)
-        }
-    }
-    
-    private func topAndBottomGradient(size: CGSize, clearLocations: [CGFloat] = [0.35, 0.65], innerIntensity: CGFloat = 0.5) -> UIImage {
-      
-      let context = CGContext(data: nil, width: Int(size.width), height: Int(size.height), bitsPerComponent: 8, bytesPerRow: 0, space: CGColorSpaceCreateDeviceGray(), bitmapInfo: CGImageAlphaInfo.none.rawValue)
-
-      let colors = [
-        .white,
-        UIColor(white: innerIntensity, alpha: 1.0),
-        .black,
-        UIColor(white: innerIntensity, alpha: 1.0),
-        .white
-        ].map { $0.cgColor }
-      let colorLocations : [CGFloat] = [0, clearLocations[0], (clearLocations[0] + clearLocations[1]) / 2.0, clearLocations[1], 1]
-      
-      let gradient = CGGradient(colorsSpace: CGColorSpaceCreateDeviceGray(), colors: colors as CFArray, locations: colorLocations)
-      
-      let startPoint = CGPoint(x: 0, y: 0)
-      let endPoint = CGPoint(x: 0, y: size.height)
-      
-      context?.drawLinearGradient(gradient!, start: startPoint, end: endPoint, options: CGGradientDrawingOptions())
-      let cgImage = context!.makeImage()
-      
-      return UIImage(cgImage: cgImage!)
-
-    }
-
-
-
-}
-
-private extension UIImage {
+public extension UIImage {
     // 改造image
     func applyBlur(radius: CGFloat, maskImage: UIImage? = nil) -> UIImage? {
         // Check pre-conditions.
@@ -102,7 +36,7 @@ private extension UIImage {
             return nil
         }
         if maskImage != nil, maskImage!.cgImage == nil {
-            print("*** error: maskImage must be backed by a CGImage: \(String(describing: maskImage))")
+            print("*** error: maskImage must be backed by a CGImage: \(maskImage)")
             return nil
         }
     
@@ -200,4 +134,3 @@ private extension UIImage {
         return outputImage
     }
 }
-

@@ -1,17 +1,13 @@
 //
-//  ImageGrayOperation.swift
-//  ChainedAsyncOperation2
+//  File.swift
+//  LearnOperation
 //
-//  Created by brown on 2022/5/3.
+//  Created by brown on 2022/5/4.
 //
 
 import Foundation
 import UIKit
-
-typealias InputImage = UIImage
-typealias OutputImage = UIImage
-
-class ImageGrayOperation: ChainedAsyncResultOperation<InputImage, OutputImage, ImageGrayOperation.Error> {
+class ImageGrayOperation: ChainedAsyncResultOperation<UIImage, UIImage, ImageGrayOperation.Error> {
     
     enum Error: Swift.Error {
         case canceled

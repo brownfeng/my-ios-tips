@@ -18,27 +18,30 @@ class ImageProvider {
     init(imageName: String) {
         // 1. 加载图像
         let loadOp = ImageLoadOperation(input: imageName)
+        
+        let grayOp = ImageGrayOperation()
         // 2. 图像处理
         let tiltShiftOp = TiltShiftOperation()
-        // 3. 图像输出 最终结果!!! onResult
-        let resultOperation = AsynchronousDependencyResultOperation<UIImage>()
-
-        resultOperation.onResult = { [weak self] result in
+        // 3. 真实的需求结果
+        let resultOp = AsyncDependencyResultOperation<UIImage>()
+        
+        resultOp.onResult = { [weak self] result in
             switch result {
             case .success(let image):
-                self?.loadedImage = image
-                self?.completion?(image)
+                DispatchQueue.main.async {
+                    self?.loadedImage = image
+                    self?.completion?(image)
+                }
             case .failure(let error):
                 print("imageName: \(imageName), error: \(error)")
             }
            // 结果回调
         }
-
-  
+//        [loadOp, grayOp, tiltShiftOp].chained()
         // 设置依赖 => 创建的一个依赖操作符
-        loadOp |> tiltShiftOp |> resultOperation
+//        loadOp |> grayOp |> tiltShiftOp
     
-        queue.addOperations([loadOp, tiltShiftOp, resultOperation], waitUntilFinished: false)
+        queue.addOperations([loadOp, grayOp, tiltShiftOp, resultOp].chained(), waitUntilFinished: false)
     }
   
     // 如果整个服务取消 -> ImageDataProvider

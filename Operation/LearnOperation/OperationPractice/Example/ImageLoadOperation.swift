@@ -8,34 +8,35 @@
 import Foundation
 import UIKit
 
-// 定义一个操作符
-precedencegroup Chainable {
-    associativity: left
-}
-
-infix operator |>: Chainable
-extension Operation {
-    static func |>(lhs: Operation, rhs: Operation) -> Operation {
-        rhs.addDependency(lhs)
-        return rhs
-    }
-}
-
-class ImageLoadOperation: ChainedAsynchronousResultOperation<String, UIImage> {
+class ImageLoadOperation: ChainedAsyncResultOperation<String, UIImage, ImageLoadOperation.Error > {
     enum Error: Swift.Error {
-        case invalidImageName
+        case canceled
+        case invalidInput
     }
     
-    
-    override func execute(_ input: String) {
+    override func main() {
+        guard !isCancelled else {
+            finish(with: .failure(.canceled))
+            return
+        }
+        
+        guard let input = input else {
+            finish(with: .failure(.invalidInput))
+            return
+        }
+        
         simulateAsyncNetworkLoadImage(named: input) { [weak self] image in
             if let image = image {
                 self?.finish(with: .success(image))
             }else {
-                self?.finish(with: .failure(Error.invalidImageName))
+                self?.finish(with: .failure(Error.invalidInput))
             }
         }
     }
+    override func cancel() {
+        cancel(with: .canceled)
+    }
+    
 
     private func simulateAsyncNetworkLoadImage(named: String?, callback: @escaping (UIImage?) -> ()) {
         OperationQueue().addOperation {
