@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 
 class WebImageManager {
-    typealias CompletionHandler = (Result<(UIImage, String), Error>) -> Void
+    typealias CompletionHandler = (Result<UIImage, Error>) -> Void
     typealias CancelToken = String
     
     static let shared = WebImageManager()
@@ -38,20 +38,20 @@ class WebImageManager {
     @discardableResult
     public func loadImage(with urlString: String, indexPath: IndexPath, completionHandler: @escaping CompletionHandler) -> CancelToken {
         let token = urlString
-//        if let memCachedImage = imageCacheMap[urlString] {
-//            debugPrint("indePath:\(indexPath), use mem cache")
-//            completionHandler(.success(memCachedImage))
-//            return token
-//        }
-//
-//        let cacheImageURL = urlString.getCacheImageFileURL()
-//        let diskImage = UIImage(contentsOfFile: cacheImageURL.path)
-//        if let diskImage = diskImage {
-//            debugPrint("indePath:\(indexPath), use disk cache")
-//            imageCacheMap[urlString] = diskImage
-//            completionHandler(.success(diskImage))
-//            return token
-//        }
+        if let memCachedImage = imageCacheMap[urlString] {
+            debugPrint("indePath:\(indexPath), use mem cache")
+            completionHandler(.success(memCachedImage))
+            return token
+        }
+
+        let cacheImageURL = urlString.getCacheImageFileURL()
+        let diskImage = UIImage(contentsOfFile: cacheImageURL.path)
+        if let diskImage = diskImage {
+            debugPrint("indePath:\(indexPath), use disk cache")
+            imageCacheMap[urlString] = diskImage
+            completionHandler(.success(diskImage))
+            return token
+        }
         
         let imageOperation = WebImageOperation(urlString: urlString)
         imageOperation.onResult = { [weak self] result in
@@ -60,14 +60,14 @@ class WebImageManager {
             }
             DispatchQueue.main.async {
                 switch result {
-                case let .success((image, urlString)):
+                case let .success(image):
                     // 2. 写入 disk 缓存
                     // 主线程写入缓存
-//                    self.imageCacheMap[token] = image
+                    self.imageCacheMap[token] = image
                     // 移除downloading
                     self.imageOperationMap.removeValue(forKey: token)
                     debugPrint("indePath:\(indexPath), 完成下载 image: \(urlString)")
-                    completionHandler(.success((image, urlString)))
+                    completionHandler(.success(image))
                 /// 如果拥有同时在下的在这里缓存
                 case .failure(let error):
                     debugPrint("indePath:\(indexPath), 下载失败 error: \(error)")

@@ -26,25 +26,37 @@ internal extension UIImageView {
             WebImageManager.shared.cancelOperation(with: cachedImageUrlString)
         }
         
+        // 非常重要
+        // TableView Cell 的复用兼容逻辑!!!
         image = nil
+        // 记录正在下载的 UrlString
         self.cachedImageUrlString = urlString
         
         WebImageManager.shared.loadImage(with: urlString, indexPath: indexPath) {[weak self] result in
-            // 这里非常重要!!! 因为 UIImageView 可能设置成nil了
             guard let self = self else {
                 return
             }
             
-            guard case let .success((image, urlString)) = result else {
-                // 请求被取消了!! 或者失败了! 这里不管了
-//                self?.image = nil
+            /*
+             非常重要!!!
+             1. urlString 持有的是当前下载的对象
+             2. self.cachedImageUrlString 可能在网络请求下载过程中变化了!!!
+             
+             这里的 self == Cell 可能已经在新的 下载任务状态了!!!
+             传统的方法这里的回调结果中, 也可以用 indexpath 来绑定这里的结果!!!
+             */
+       
+            if self.cachedImageUrlString == urlString {
+                guard case let .success(image) = result else {
+                    // 请求被取消了!! 或者失败了! 这里不管了
+                    self.cachedImageUrlString = nil
+                    return
+                }
+                
+                debugPrint("请求回调的时候: indexPath:\(indexPath) urlString: \(urlString), downloadingUrlString: \(self.cachedImageUrlString ?? "")")
+                self.image = image
                 self.cachedImageUrlString = nil
-                return
             }
-            
-            debugPrint("请求回调的时候: indexPath:\(indexPath) urlString: \(urlString), downloadingUrlString: \(self.cachedImageUrlString ?? "")")
-            self.image = image
-            self.cachedImageUrlString = nil
         }
     }
     

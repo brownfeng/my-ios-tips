@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
  
-final class WebImageOperation: AsyncResultOperation<(UIImage, String), WebImageOperation.Error> {
+final class WebImageOperation: AsyncResultOperation<UIImage, WebImageOperation.Error> {
     enum Error: Swift.Error {
         case canceled
         case invalidURL
@@ -65,9 +65,10 @@ final class WebImageOperation: AsyncResultOperation<(UIImage, String), WebImageO
                 }
                 
                 let cacheImageURL = self.imageDataFileUrl
+                // 将图像写入文件
                 try? data.write(to: cacheImageURL)
                 
-                self.finish(with: .success((image, self.urlString)))
+                self.finish(with: .success(image))
             } catch {
                 if let error = error as? WebImageOperation.Error {
                     self.finish(with: .failure(error))
