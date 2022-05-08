@@ -78,6 +78,7 @@
 		C0DF31B12827555D00C1B221 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0DF31B02827555D00C1B221 /* ViewModel.swift */; };
 		C0DF31B32827565D00C1B221 /* Photos.plist in Resources */ = {isa = PBXBuildFile; fileRef = C0DF31B22827565D00C1B221 /* Photos.plist */; };
 		C0DF31B52827610B00C1B221 /* CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0DF31B42827610B00C1B221 /* CollectionViewCell.swift */; };
+		C0DF31B72827679F00C1B221 /* UIImageView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0DF31B62827679F00C1B221 /* UIImageView+Extension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -139,6 +140,7 @@
 		C0DF31B02827555D00C1B221 /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
 		C0DF31B22827565D00C1B221 /* Photos.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Photos.plist; sourceTree = "<group>"; };
 		C0DF31B42827610B00C1B221 /* CollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewCell.swift; sourceTree = "<group>"; };
+		C0DF31B62827679F00C1B221 /* UIImageView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Extension.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -328,6 +330,7 @@
 			children = (
 				C0DF31B02827555D00C1B221 /* ViewModel.swift */,
 				C0DF31B42827610B00C1B221 /* CollectionViewCell.swift */,
+				C0DF31B62827679F00C1B221 /* UIImageView+Extension.swift */,
 			);
 			path = Source;
 			sourceTree = "<group>";
@@ -580,6 +583,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C0D0672328216E3600E87E09 /* ViewController.swift in Sources */,
+				C0DF31B72827679F00C1B221 /* UIImageView+Extension.swift in Sources */,
 				C0D0671F28216E3600E87E09 /* AppDelegate.swift in Sources */,
 				C0D0672128216E3600E87E09 /* SceneDelegate.swift in Sources */,
 				C0D0677C2822553600E87E09 /* AsyncResultOperation.swift in Sources */,
