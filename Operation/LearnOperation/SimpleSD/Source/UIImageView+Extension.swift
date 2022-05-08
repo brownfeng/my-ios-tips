@@ -38,14 +38,14 @@ internal extension UIImageView {
             }
             
             /*
-             非常重要!!!
+             
+             非常重要!!! -- 异步请求结果回调的时, 判断状态并更新UI!!!
              1. urlString 持有的是当前下载的对象
              2. self.cachedImageUrlString 可能在网络请求下载过程中变化了!!!
              
              这里的 self == Cell 可能已经在新的 下载任务状态了!!!
              传统的方法这里的回调结果中, 也可以用 indexpath 来绑定这里的结果!!!
              */
-       
             if self.cachedImageUrlString == urlString {
                 guard case let .success(image) = result else {
                     // 请求被取消了!! 或者失败了! 这里不管了
