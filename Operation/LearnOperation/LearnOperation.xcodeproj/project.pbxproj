@@ -79,6 +79,8 @@
 		C0DF31B32827565D00C1B221 /* Photos.plist in Resources */ = {isa = PBXBuildFile; fileRef = C0DF31B22827565D00C1B221 /* Photos.plist */; };
 		C0DF31B52827610B00C1B221 /* CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0DF31B42827610B00C1B221 /* CollectionViewCell.swift */; };
 		C0DF31B72827679F00C1B221 /* UIImageView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0DF31B62827679F00C1B221 /* UIImageView+Extension.swift */; };
+		C0FC763528278D2E00D52B5F /* WebImageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0FC763428278D2E00D52B5F /* WebImageManager.swift */; };
+		C0FC763728279E5500D52B5F /* WebImageOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0FC763628279E5500D52B5F /* WebImageOperation.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -141,6 +143,8 @@
 		C0DF31B22827565D00C1B221 /* Photos.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Photos.plist; sourceTree = "<group>"; };
 		C0DF31B42827610B00C1B221 /* CollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewCell.swift; sourceTree = "<group>"; };
 		C0DF31B62827679F00C1B221 /* UIImageView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Extension.swift"; sourceTree = "<group>"; };
+		C0FC763428278D2E00D52B5F /* WebImageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebImageManager.swift; sourceTree = "<group>"; };
+		C0FC763628279E5500D52B5F /* WebImageOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebImageOperation.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -331,6 +335,8 @@
 				C0DF31B02827555D00C1B221 /* ViewModel.swift */,
 				C0DF31B42827610B00C1B221 /* CollectionViewCell.swift */,
 				C0DF31B62827679F00C1B221 /* UIImageView+Extension.swift */,
+				C0FC763428278D2E00D52B5F /* WebImageManager.swift */,
+				C0FC763628279E5500D52B5F /* WebImageOperation.swift */,
 			);
 			path = Source;
 			sourceTree = "<group>";
@@ -591,7 +597,9 @@
 				C0DF31B12827555D00C1B221 /* ViewModel.swift in Sources */,
 				C0D0677A2822553600E87E09 /* ChainedAsyncResultOperation.swift in Sources */,
 				C0D0676E2822537400E87E09 /* Extension.swift in Sources */,
+				C0FC763728279E5500D52B5F /* WebImageOperation.swift in Sources */,
 				C0D067852822591E00E87E09 /* AsyncDependencyResultOperation.swift in Sources */,
+				C0FC763528278D2E00D52B5F /* WebImageManager.swift in Sources */,
 				C0DF31B52827610B00C1B221 /* CollectionViewCell.swift in Sources */,
 				C0D0677B2822553600E87E09 /* Async2Operation.swift in Sources */,
 			);

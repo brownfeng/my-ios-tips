@@ -9,41 +9,55 @@ import UIKit
 import CommonCrypto
 
 // 全局的
-var cacheImageMap: [String: UIImage] = [:]
+fileprivate var cacheImageMap: [String: UIImage] = [:]
 
 internal extension UIImageView {
     func sd_setImage(urlString: String, indexPath: IndexPath) {
-        let url = URL(string: urlString)!
-        
-        if let memCachedImage = cacheImageMap[urlString] {
-            debugPrint("indePath:\(indexPath), use mem cache")
-            image = memCachedImage
+        assert(Thread.current.isMainThread, "必须在主线程调用")
+
+        if let _ = self.cachedImageUrlString, cachedImageUrlString == urlString {
+            debugPrint("indePath:\(indexPath), 两个图像一样, 没必要重新下载")
             return
         }
-        
-        let cacheImageURL = urlString.getCacheImageFileURL()
-        let diskImage = UIImage(contentsOfFile: cacheImageURL.path)
-        if let image = diskImage {
-            debugPrint("indePath:\(indexPath), use disk cache")
 
-            self.image = image
-            // 写入内存缓存
-            cacheImageMap[urlString] = image
-            return
+        // 两个图不一样!!! 先取消旧的下载
+        if let cachedImageUrlString = self.cachedImageUrlString {
+            print("取消之前的下载操作: \(cachedImageUrlString), urlString:\(urlString), indexPath: \(indexPath)")
+            WebImageManager.shared.cancelOperation(with: cachedImageUrlString)
         }
         
         image = nil
-        DispatchQueue.global().async {
-            let imageData = try! Data(contentsOf: url)
-            try! imageData.write(to: cacheImageURL)
-            let image = UIImage(data: imageData)
-
-            DispatchQueue.main.async {
-                //主线程写入缓存
-                cacheImageMap[urlString] = image
-                debugPrint("indePath:\(indexPath), use net image")
-                self.image = image
+        self.cachedImageUrlString = urlString
+        
+        WebImageManager.shared.loadImage(with: urlString, indexPath: indexPath) {[weak self] result in
+            // 这里非常重要!!! 因为 UIImageView 可能设置成nil了
+            guard let self = self else {
+                return
             }
+            
+            guard case let .success((image, urlString)) = result else {
+                // 请求被取消了!! 或者失败了! 这里不管了
+//                self?.image = nil
+                self.cachedImageUrlString = nil
+                return
+            }
+            
+            debugPrint("请求回调的时候: indexPath:\(indexPath) urlString: \(urlString), downloadingUrlString: \(self.cachedImageUrlString ?? "")")
+            self.image = image
+            self.cachedImageUrlString = nil
+        }
+    }
+    
+    private enum AssociatedKeys {
+        static var cachedImageUrlString = "cachedImageUrlString"
+    }
+    
+    private(set) var cachedImageUrlString: String? {
+        set {
+            objc_setAssociatedObject(self, &AssociatedKeys.cachedImageUrlString, newValue, objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+        }
+        get {
+            objc_getAssociatedObject(self, &AssociatedKeys.cachedImageUrlString) as? String
         }
     }
 }
