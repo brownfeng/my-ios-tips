@@ -45,19 +45,14 @@ final class WebImageOperation: AsyncResultOperation<UIImage, WebImageOperation.E
             guard let self = self else {
                 return
             }
-            if self.isCancelled {
-                self.finish(with: .failure(.canceled))
-                return
-            }
-            
+       
             do {
-                if let error = error {
-                    throw error
+                if self.isCancelled {
+                    throw Error.canceled
                 }
                 
-                if self.isCancelled {
-                    self.finish(with: .failure(.canceled))
-                    return
+                if let error = error {
+                    throw error
                 }
                 
                 guard let data = data, let image = UIImage(data: data) else {
@@ -68,7 +63,12 @@ final class WebImageOperation: AsyncResultOperation<UIImage, WebImageOperation.E
                 // 将图像写入文件
                 try? data.write(to: cacheImageURL)
                 
+                if self.isCancelled {
+                    throw Error.canceled
+                }
+                
                 self.finish(with: .success(image))
+                return
             } catch {
                 if let error = error as? WebImageOperation.Error {
                     self.finish(with: .failure(error))
@@ -76,7 +76,6 @@ final class WebImageOperation: AsyncResultOperation<UIImage, WebImageOperation.E
                     self.finish(with: .failure(.underlying(error: error)))
                 }
             }
-            
         })
         dataTask?.resume()
     }

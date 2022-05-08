@@ -15,7 +15,7 @@ class WebImageManager {
     static let shared = WebImageManager()
     
     private var imageCacheMap: [String: UIImage] = [:]
-    private var imageOperationMap: [String: Operation] = [:]
+    private var imageOperationMap: [String: WebImageOperation] = [:]
 //    private var callbackHandlerArrayMap: [String: [CompletionHandler]] = [:]
 
     private let workQueue: OperationQueue = {
@@ -38,20 +38,20 @@ class WebImageManager {
     @discardableResult
     public func loadImage(with urlString: String, indexPath: IndexPath, completionHandler: @escaping CompletionHandler) -> CancelToken {
         let token = urlString
-        if let memCachedImage = imageCacheMap[urlString] {
-            debugPrint("indePath:\(indexPath), use mem cache")
-            completionHandler(.success(memCachedImage))
-            return token
-        }
-
-        let cacheImageURL = urlString.getCacheImageFileURL()
-        let diskImage = UIImage(contentsOfFile: cacheImageURL.path)
-        if let diskImage = diskImage {
-            debugPrint("indePath:\(indexPath), use disk cache")
-            imageCacheMap[urlString] = diskImage
-            completionHandler(.success(diskImage))
-            return token
-        }
+//        if let memCachedImage = imageCacheMap[urlString] {
+//            debugPrint("indePath:\(indexPath), use mem cache")
+//            completionHandler(.success(memCachedImage))
+//            return token
+//        }
+//
+//        let cacheImageURL = urlString.getCacheImageFileURL()
+//        let diskImage = UIImage(contentsOfFile: cacheImageURL.path)
+//        if let diskImage = diskImage {
+//            debugPrint("indePath:\(indexPath), use disk cache")
+//            imageCacheMap[urlString] = diskImage
+//            completionHandler(.success(diskImage))
+//            return token
+//        }
         
         let imageOperation = WebImageOperation(urlString: urlString)
         imageOperation.onResult = { [weak self] result in
@@ -66,12 +66,11 @@ class WebImageManager {
                     self.imageCacheMap[token] = image
                     // 移除downloading
                     self.imageOperationMap.removeValue(forKey: token)
-                    debugPrint("indePath:\(indexPath), 完成下载 image: \(urlString)")
                     completionHandler(.success(image))
                 /// 如果拥有同时在下的在这里缓存
                 case .failure(let error):
-                    debugPrint("indePath:\(indexPath), 下载失败 error: \(error)")
                     completionHandler(.failure(error))
+                    break
                 }
             }
         }
@@ -95,8 +94,8 @@ class WebImageManager {
     private func didReceiveMemoryWarning() {
         print("收到内存警告")
 //        imageCacheMap.removeAll()
-        workQueue.cancelAllOperations()
-        imageOperationMap.removeAll()
+//        workQueue.cancelAllOperations()
+//        imageOperationMap.removeAll()
 //        handleMap.removeAll()
     }
 }
