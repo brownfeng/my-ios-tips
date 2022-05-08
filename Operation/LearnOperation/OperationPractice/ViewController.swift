@@ -28,7 +28,6 @@ class ViewController: UIViewController {
         tableView.delegate = self
         tableView.prefetchDataSource = self
         tableView.reloadData()
-        
     }
     
     override func viewDidLayoutSubviews() {
