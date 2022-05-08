@@ -42,7 +42,6 @@ internal extension UIImageView {
                 //主线程写入缓存
                 cacheImageMap[urlString] = image
                 debugPrint("indePath:\(indexPath), use net image")
-
                 self.image = image
             }
         }
