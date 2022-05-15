@@ -66,7 +66,7 @@ extension ViewController: UICollectionViewDataSource, UICollectionViewDelegateFl
         let model: Model = self.dataArray[indexPath.row]
     
         cell.titleLabel.text = indexPath.description
-        cell.imageView.sd_setImage(urlString: model.imageUrl, indexPath: indexPath)
+        cell.imageView.bf.setImage(with: URL(string: model.imageUrl)!, placeholderImage: UIImage(named: "default"))
         return cell
     }
 

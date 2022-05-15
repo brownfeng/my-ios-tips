@@ -7,12 +7,17 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		C027063A281D388200417AED /* WebImageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0270639281D388200417AED /* WebImageManager.swift */; };
-		C027063C281D389C00417AED /* UIImageView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C027063B281D389C00417AED /* UIImageView+Extension.swift */; };
-		C027063E281D430C00417AED /* WebImageToolCompatible.swift in Sources */ = {isa = PBXBuildFile; fileRef = C027063D281D430C00417AED /* WebImageToolCompatible.swift */; };
-		C0270640281D626B00417AED /* WebImageDownloadOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C027063F281D626B00417AED /* WebImageDownloadOperation.swift */; };
+		C027063C281D389C00417AED /* UIImageView+Compatible.swift in Sources */ = {isa = PBXBuildFile; fileRef = C027063B281D389C00417AED /* UIImageView+Compatible.swift */; };
+		C027063E281D430C00417AED /* BrownfengCompatible.swift in Sources */ = {isa = PBXBuildFile; fileRef = C027063D281D430C00417AED /* BrownfengCompatible.swift */; };
 		C02EEE2D281CCF32005292C0 /* MyViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C02EEE2C281CCF32005292C0 /* MyViewModel.swift */; };
 		C02EEE2F281CDB7A005292C0 /* MyModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C02EEE2E281CDB7A005292C0 /* MyModel.swift */; };
+		C0D211A328309AAC00C9BA59 /* ImageDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0D211A228309AAC00C9BA59 /* ImageDownloader.swift */; };
+		C0D211A528309D7F00C9BA59 /* RequestReceipt.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0D211A428309D7F00C9BA59 /* RequestReceipt.swift */; };
+		C0D211A92830A08D00C9BA59 /* BFError.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0D211A82830A08D00C9BA59 /* BFError.swift */; };
+		C0D211AB2830B8A200C9BA59 /* DataResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0D211AA2830B8A200C9BA59 /* DataResponse.swift */; };
+		C0D211AD2830BD1100C9BA59 /* ImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0D211AC2830BD1100C9BA59 /* ImageCache.swift */; };
+		C0D211AF2830FB9200C9BA59 /* ImageDownloadOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0D211AE2830FB9200C9BA59 /* ImageDownloadOperation.swift */; };
+		C0D211B12830FC1B00C9BA59 /* BaseAsyncOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0D211B02830FC1B00C9BA59 /* BaseAsyncOperation.swift */; };
 		C0FF609D281CC4C800392771 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0FF609C281CC4C800392771 /* AppDelegate.swift */; };
 		C0FF609F281CC4C800392771 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0FF609E281CC4C800392771 /* SceneDelegate.swift */; };
 		C0FF60A1281CC4C800392771 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0FF60A0281CC4C800392771 /* ViewController.swift */; };
@@ -23,12 +28,17 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		C0270639281D388200417AED /* WebImageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebImageManager.swift; sourceTree = "<group>"; };
-		C027063B281D389C00417AED /* UIImageView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Extension.swift"; sourceTree = "<group>"; };
-		C027063D281D430C00417AED /* WebImageToolCompatible.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebImageToolCompatible.swift; sourceTree = "<group>"; };
-		C027063F281D626B00417AED /* WebImageDownloadOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebImageDownloadOperation.swift; sourceTree = "<group>"; };
+		C027063B281D389C00417AED /* UIImageView+Compatible.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Compatible.swift"; sourceTree = "<group>"; };
+		C027063D281D430C00417AED /* BrownfengCompatible.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrownfengCompatible.swift; sourceTree = "<group>"; };
 		C02EEE2C281CCF32005292C0 /* MyViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyViewModel.swift; sourceTree = "<group>"; };
 		C02EEE2E281CDB7A005292C0 /* MyModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyModel.swift; sourceTree = "<group>"; };
+		C0D211A228309AAC00C9BA59 /* ImageDownloader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageDownloader.swift; sourceTree = "<group>"; };
+		C0D211A428309D7F00C9BA59 /* RequestReceipt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestReceipt.swift; sourceTree = "<group>"; };
+		C0D211A82830A08D00C9BA59 /* BFError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BFError.swift; sourceTree = "<group>"; };
+		C0D211AA2830B8A200C9BA59 /* DataResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataResponse.swift; sourceTree = "<group>"; };
+		C0D211AC2830BD1100C9BA59 /* ImageCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCache.swift; sourceTree = "<group>"; };
+		C0D211AE2830FB9200C9BA59 /* ImageDownloadOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageDownloadOperation.swift; sourceTree = "<group>"; };
+		C0D211B02830FC1B00C9BA59 /* BaseAsyncOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseAsyncOperation.swift; sourceTree = "<group>"; };
 		C0FF6099281CC4C800392771 /* LearnOperation.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LearnOperation.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C0FF609C281CC4C800392771 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C0FF609E281CC4C800392771 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -54,10 +64,15 @@
 		C0270638281D386700417AED /* WebImageTool */ = {
 			isa = PBXGroup;
 			children = (
-				C0270639281D388200417AED /* WebImageManager.swift */,
-				C027063B281D389C00417AED /* UIImageView+Extension.swift */,
-				C027063D281D430C00417AED /* WebImageToolCompatible.swift */,
-				C027063F281D626B00417AED /* WebImageDownloadOperation.swift */,
+				C027063B281D389C00417AED /* UIImageView+Compatible.swift */,
+				C027063D281D430C00417AED /* BrownfengCompatible.swift */,
+				C0D211A228309AAC00C9BA59 /* ImageDownloader.swift */,
+				C0D211A428309D7F00C9BA59 /* RequestReceipt.swift */,
+				C0D211A82830A08D00C9BA59 /* BFError.swift */,
+				C0D211AA2830B8A200C9BA59 /* DataResponse.swift */,
+				C0D211AC2830BD1100C9BA59 /* ImageCache.swift */,
+				C0D211AE2830FB9200C9BA59 /* ImageDownloadOperation.swift */,
+				C0D211B02830FC1B00C9BA59 /* BaseAsyncOperation.swift */,
 			);
 			path = WebImageTool;
 			sourceTree = "<group>";
@@ -169,13 +184,18 @@
 			files = (
 				C0FF60A1281CC4C800392771 /* ViewController.swift in Sources */,
 				C02EEE2F281CDB7A005292C0 /* MyModel.swift in Sources */,
-				C027063C281D389C00417AED /* UIImageView+Extension.swift in Sources */,
+				C027063C281D389C00417AED /* UIImageView+Compatible.swift in Sources */,
 				C0FF60B1281CC85B00392771 /* MyCollectionViewCell.swift in Sources */,
-				C027063A281D388200417AED /* WebImageManager.swift in Sources */,
-				C0270640281D626B00417AED /* WebImageDownloadOperation.swift in Sources */,
+				C0D211A328309AAC00C9BA59 /* ImageDownloader.swift in Sources */,
 				C0FF609D281CC4C800392771 /* AppDelegate.swift in Sources */,
+				C0D211A528309D7F00C9BA59 /* RequestReceipt.swift in Sources */,
+				C0D211AB2830B8A200C9BA59 /* DataResponse.swift in Sources */,
 				C0FF609F281CC4C800392771 /* SceneDelegate.swift in Sources */,
-				C027063E281D430C00417AED /* WebImageToolCompatible.swift in Sources */,
+				C027063E281D430C00417AED /* BrownfengCompatible.swift in Sources */,
+				C0D211AF2830FB9200C9BA59 /* ImageDownloadOperation.swift in Sources */,
+				C0D211A92830A08D00C9BA59 /* BFError.swift in Sources */,
+				C0D211B12830FC1B00C9BA59 /* BaseAsyncOperation.swift in Sources */,
+				C0D211AD2830BD1100C9BA59 /* ImageCache.swift in Sources */,
 				C02EEE2D281CCF32005292C0 /* MyViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

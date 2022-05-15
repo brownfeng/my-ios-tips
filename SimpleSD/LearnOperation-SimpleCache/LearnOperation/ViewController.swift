@@ -34,13 +34,6 @@ class ViewController: UIViewController {
     private var viewModel: MyViewModel?
     
     private var dataArray: [MyModel] = []
-    private var cacheImageMap: [String: UIImage] = [:]
-    
-    private let operationQueue: OperationQueue = {
-        let oq = OperationQueue()
-        oq.maxConcurrentOperationCount = 2
-        return oq
-    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -66,67 +59,8 @@ extension ViewController: UICollectionViewDataSource, UICollectionViewDelegateFl
         
         let model: MyModel = self.dataArray[indexPath.row]
         cell.titleLabel.text = model.title
-        cell.imageView.setImage(with: model.imageUrl, title: model.title, indexPath: indexPath)
+        let url = URL(string: model.imageUrl)!
+        cell.imageView.bf.setImage(with: url)
         return cell
-    }
-
-    func collectionView11111(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MyCollectionViewCell.identifier, for: indexPath) as! MyCollectionViewCell
-        
-        let model: MyModel = self.dataArray[indexPath.row]
-        let imageURL = URL(string: model.imageUrl)!
-        cell.titleLabel.text = model.title
-        
-        // 内存缓存 -- 内存会清理
-        
-        if let image = cacheImageMap[model.imageUrl] {
-            print("使用内存缓存: \(model.title)")
-            cell.imageView.image = image
-            return cell
-        }
-        
-        // 沙盒缓存 -- 读取沙盒缓存
-        
-        let cacheImageURL = model.imageUrl.getDownloadURL()
-        let diskImage = UIImage(contentsOfFile: cacheImageURL.path)
-        if let image = diskImage {
-            print("使用磁盘缓存: \(model.title)")
-            cell.imageView.image = image
-            
-            // 写入内存缓存
-            self.cacheImageMap[model.imageUrl] = image
-            return cell
-        }
-        
-        print("开始后台下载: \(model.title)")
-        
-        // 下载 - 事务
-        // 开辟子线程 - 下载
-        let bo = BlockOperation {
-            print("去下载: \(model.title)")
-            // 1. 先下载
-            let imageData = try! Data(contentsOf: imageURL)
-            // 2. 写入 disk 缓存
-            try! imageData.write(to: cacheImageURL)
-            
-            let image = UIImage(data: imageData)
-
-            // 更新UI
-            OperationQueue.main.addOperation {
-                // 内存缓存 - 因为 cacheImageMap 会在主线程中调用, 因此要放到主线程中缓存
-                self.cacheImageMap[model.imageUrl] = image
-                // 更新UI
-                cell.imageView.image = image
-            }
-        }
-            
-        self.operationQueue.addOperation(bo)
-        
-        return cell
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        self.cacheImageMap.removeAll()
     }
 }
